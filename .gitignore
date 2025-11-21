@@ -1,0 +1,74 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# Build output
+[Bb]in/
+[Oo]bj/
+out/
+publish/
+artifacts/
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+packages.lock.json
+project.lock.json
+
+# .NET binaries
+*.dll
+*.exe
+*.app
+*.vsix
+*.pdb
+
+# Blazor / ASP.NET Core
+wwwroot/_framework/
+wwwroot/dist/
+node_modules/
+npm-debug.log
+yarn-error.log
+*.cache
+
+# Configuration / secrets
+secrets.json
+*.pfx
+*.key
+*.cer
+.env
+.local.settings.json
+appsettings.*.Local.json
+appsettings.*.Development.json
+secrets.*
+usersecrets.json
+
+# Test results
+TestResults/
+*.trx
+coverage/
+
+# Logs and temporary
+*.log
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Tools / analyzers
+_ReSharper*/
+*.DotSettings.user
+
+# OS files
+Thumbs.db
+.DS_Store
