@@ -16,13 +16,20 @@ env:
   # プロジェクトファイルへのパス
   # 例1: リポジトリ直下に BlazorApp.csproj がある場合 → 'BlazorApp.csproj'
   # 例2: BlazorApp フォルダの中にある場合        → 'BlazorApp/BlazorApp.csproj'
-  PROJECT_PATH: 'BlazorApp/BlazorApp.csproj'
+  PROJECT_PATH: 'src/BlazorApp/BlazorApp.csproj'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Debug repo structure
+        run: |
+          echo "=== Current directory ==="
+          pwd
+          echo "=== List files ==="
+          ls -R
+
       - name: Checkout
         uses: actions/checkout@v4
 
