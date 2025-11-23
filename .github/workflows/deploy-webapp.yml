@@ -11,7 +11,7 @@ env:
   AZURE_WEBAPP_NAME: WebApp-20251122
 
   # .NET のバージョン
-  DOTNET_VERSION: '8.0.22'
+  DOTNET_VERSION: '8.0.x'
 
   # プロジェクトファイルへのパス
   # 例1: リポジトリ直下に BlazorApp.csproj がある場合 → 'BlazorApp.csproj'
