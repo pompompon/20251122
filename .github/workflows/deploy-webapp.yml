@@ -1,0 +1,48 @@
+name: Build and deploy .NET 8 app to Azure Web App
+
+on:
+  push:
+    branches:
+      - main      # デプロイしたいブランチ
+  workflow_dispatch:
+
+env:
+  # Azure ポータルの Web アプリ名に置き換えてください (例: my-webapp-westus2)
+  AZURE_WEBAPP_NAME: WebApp-20251122
+
+  # .NET のバージョン
+  DOTNET_VERSION: '8.0.22'
+
+  # プロジェクトファイルへのパス
+  # 例1: リポジトリ直下に BlazorApp.csproj がある場合 → 'BlazorApp.csproj'
+  # 例2: BlazorApp フォルダの中にある場合        → 'BlazorApp/BlazorApp.csproj'
+  PROJECT_PATH: 'BlazorApp/BlazorApp.csproj'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore
+        run: dotnet restore ${{ env.PROJECT_PATH }}
+
+      - name: Build
+        run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish ${{ env.PROJECT_PATH }} --configuration Release --no-build --output ./publish
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./publish
